@@ -14,7 +14,7 @@ Adafruit_BMP3XX::Adafruit_BMP3XX(const char *filename){
     #ifdef USING_CSV
     this->_filename = new char[strlen(filename) + 1];
     strncpy(this->_filename, filename, strlen(filename) + 1);
-    sensor_data = new csv_parser::parser(filename, 10);
+    sensor_data = new csv_parser::arduino_parser(filename, 10);
     this->file_index = 0;
     #else
     srand(time(NULL));

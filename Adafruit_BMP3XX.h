@@ -57,7 +57,7 @@ private:
     char *_filename;
     int file_index;
     #ifdef USING_CSV
-    csv_parser::parser* sensor_data;
+    csv_parser::arduino_parser* sensor_data;
     #endif
 
 };
