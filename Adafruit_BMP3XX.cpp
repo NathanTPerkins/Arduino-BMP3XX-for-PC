@@ -2,7 +2,8 @@
 #include "Arduino.h"
 #include <string.h>
 #include <time.h>
-
+#include <errno.h>
+#define USING_CSV
 Adafruit_BMP3XX::Adafruit_BMP3XX(const char *filename){
     if(filename == NULL){
         this->random_values = true;
@@ -14,12 +15,11 @@ Adafruit_BMP3XX::Adafruit_BMP3XX(const char *filename){
     #ifdef USING_CSV
     this->_filename = new char[strlen(filename) + 1];
     strncpy(this->_filename, filename, strlen(filename) + 1);
-    sensor_data = new csv_parser::arduino_parser(filename, 10);
+    this->sensor_data = new csv_parser::arduino_parser(filename, 10);
     this->file_index = 0;
     #else
     srand(time(NULL));
     #endif
-
     this->running = true;
 
 }
@@ -154,4 +154,8 @@ void Adafruit_BMP3XX::increase_file_index(){
     ++this->file_index;
 }
 
-
+void Adafruit_BMP3XX::show_simulated_file(){
+    #ifdef USING_CSV
+    sensor_data->head(sensor_data->getSize());
+    #endif
+}

@@ -49,6 +49,8 @@ public:
 
     void increase_file_index();
 
+    void show_simulated_file();
+
 private:
 
     bool _init(void);
@@ -56,6 +58,7 @@ private:
     bool running;
     char *_filename;
     int file_index;
+
     #ifdef USING_CSV
     csv_parser::arduino_parser* sensor_data;
     #endif
