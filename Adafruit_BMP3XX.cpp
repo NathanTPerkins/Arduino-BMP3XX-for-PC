@@ -123,8 +123,13 @@ bool Adafruit_BMP3XX::performReading(){
 #endif
 
 #ifdef USING_CSV
-    this->temperature = atof(this->sensor_data->operator[](this->file_index)[TEMPERATURE]);
-    this->pressure = atof(this->sensor_data->operator[](this->file_index)[PRESSURE]);
+    if(this->file_index < this->sensor_data->getSize()){
+        this->temperature = atof(this->sensor_data->operator[](this->file_index)[TEMPERATURE]);
+        this->pressure = atof(this->sensor_data->operator[](this->file_index)[PRESSURE]);
+    }else{
+        this->temperature = 0;
+        this->pressure = 0;
+    }
 #else
     this->temperature = rand() / rand();
     this->pressure = rand() / rand();
