@@ -158,3 +158,9 @@ void Adafruit_BMP3XX::show_simulated_file(){
     sensor_data->head(sensor_data->getSize());
     #endif
 }
+
+Adafruit_BMP3XX::~Adafruit_BMP3XX(){
+    #ifdef USING_CSV
+    delete this->sensor_data;
+    #endif
+}
