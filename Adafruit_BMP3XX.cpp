@@ -3,7 +3,6 @@
 #include <string.h>
 #include <time.h>
 #include <errno.h>
-#define USING_CSV
 Adafruit_BMP3XX::Adafruit_BMP3XX(const char *filename){
     if(filename == NULL){
         this->random_values = true;
